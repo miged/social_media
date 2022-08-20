@@ -2,10 +2,8 @@
 
 one:
   id: 1
-  username: jane
-  password_digest: password123
+  body_text: Hello world!
 
 two:
   id: 2
-  username: mark
-  password_digest: password456
+  body_text: Lorem ipsum dolor sit amet
