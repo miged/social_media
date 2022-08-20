@@ -8,6 +8,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
     @user = User.where(username: "john").first()
     assert @user
+    assert_equal @user.to_json, @response.body
   end
 
   test "should not create a duplicate user" do
@@ -26,6 +27,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     post "/login",
     params: { username: "jane", password: "password123" }
     assert_response :success
+
+    @user = User.where(username: "jane").first()
+    assert_equal @user.to_json, @response.body
   end
 
   test "should not login user if password is wrong" do

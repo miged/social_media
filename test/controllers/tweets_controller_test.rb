@@ -5,6 +5,10 @@ class TweetsControllerTest < ActionDispatch::IntegrationTest
     post "/tweet",
     params: { tweet: { body_text: "Test", user_id: 1 } }
     assert_response :success
+
+    @tweet = Tweet.where(body_text: "Test").first()
+    assert @tweet
+    assert_equal @tweet.to_json, @response.body
   end
 
   test "should not create tweet if user doesn't exist" do
@@ -22,11 +26,17 @@ class TweetsControllerTest < ActionDispatch::IntegrationTest
   test "should show all tweets" do
     get "/tweet"
     assert_response :success
+
+    @tweets = Tweet.all
+    assert_equal @tweets.to_json, @response.body
   end
 
   test "should show tweet" do
     get "/tweet/1"
     assert_response :success
+
+    @tweet = Tweet.find(1)
+    assert_equal @tweet.to_json, @response.body
   end
 
   test "should update tweet" do

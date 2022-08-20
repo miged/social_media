@@ -31,7 +31,6 @@ class TweetsController < ApplicationController
 
     @tweet.body_text = params[:body_text]
     @tweet.save
-
     render json: @tweet
   end
 
