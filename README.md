@@ -16,9 +16,11 @@ Test code is located in `test/controllers`
 
 - Run tests with `bin/rails test`
 
-# API
+## API
 
-## User
+### User
+
+Register a user
 
 ```
 POST /register
@@ -28,6 +30,8 @@ POST /register
 }
 ```
 
+Login
+
 ```
 POST /login
 {
@@ -36,15 +40,21 @@ POST /login
 }
 ```
 
-## Tweets
+### Tweets
+
+Get all tweets
 
 ```
 GET /tweet
 ```
 
+Get a tweet by id
+
 ```
 GET /tweet/:id
 ```
+
+Create a tweet
 
 ```
 POST /tweet
@@ -54,6 +64,8 @@ POST /tweet
 }
 ```
 
+Edit a tweet
+
 ```
 PUT /tweet/:id
 {
@@ -61,6 +73,8 @@ PUT /tweet/:id
 	"user_id": 1
 }
 ```
+
+Delete a tweet
 
 ```
 DELETE /tweet/:id
