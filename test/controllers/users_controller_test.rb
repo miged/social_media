@@ -25,7 +25,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should login user" do
     post "/login",
-    params: { username: "jane", password: "password123" }
+    params: { username: "jane", password_digest: "password123" }
     assert_response :success
 
     @user = User.where(username: "jane").first()
@@ -34,7 +34,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should not login user if password is wrong" do
     post "/login",
-    params: { username: "jane", password: "password" }
+    params: { username: "jane", password_digest: "password" }
     assert_response :forbidden
   end
 end

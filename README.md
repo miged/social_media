@@ -15,3 +15,56 @@ Test code is located in `test/controllers`
 - Run server with `bin/rails server`
 
 - Run tests with `bin/rails test`
+
+# API
+
+## User
+
+```
+POST /register
+{
+	"username": "john",
+	"password_digest": "password123"
+}
+```
+
+```
+POST /login
+{
+	"username": "john",
+	"password_digest": "password123"
+}
+```
+
+## Tweets
+
+```
+GET /tweet
+```
+
+```
+GET /tweet/:id
+```
+
+```
+POST /tweet
+{
+	"body_text": "Hello world!",
+	"user_id": 1
+}
+```
+
+```
+PUT /tweet/:id
+{
+	"body_text": "Edited text",
+	"user_id": 1
+}
+```
+
+```
+DELETE /tweet/:id
+{
+    "user_id": 1
+}
+```

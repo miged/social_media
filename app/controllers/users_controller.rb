@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def login
-    @user = User.where(username: params[:username], password_digest: params[:password]).first()
+    @user = User.where(username: params[:username], password_digest: params[:password_digest]).first()
 
     if !@user
       return head :forbidden
