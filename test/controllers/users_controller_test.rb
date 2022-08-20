@@ -6,15 +6,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     params: { user: { username: "john", password_digest: "p@ssw0rd" } }
     assert_response :success
 
-    post "/login",
-    params: { username: "john", password_digest: "p@ssw0rd" }
-    assert_response :success
-  end
-
-  test "should login user" do
-    post "/login",
-    params: { username: "jane", password_digest: "password123" }
-    assert_response :success
+    @user = User.where(username: "john").first()
+    assert @user
   end
 
   test "should not create a duplicate user" do
@@ -27,5 +20,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     post "/register",
     params: { user: { username: "john" } }
     assert_response 400
+  end
+
+  test "should login user" do
+    post "/login",
+    params: { username: "jane", password: "password123" }
+    assert_response :success
   end
 end

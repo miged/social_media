@@ -11,13 +11,13 @@ class UsersController < ApplicationController
   end
 
   def login
-    @user = User.where(username: params[:username], password_digest: params[:password_digest]).first()
+    @user = User.where(username: params[:username], password_digest: params[:password]).first()
 
     if @user
       session[:user_id] = @user.id
       render json: @user
     else
-      head 403
+      head :forbidden
     end
   end
 end
