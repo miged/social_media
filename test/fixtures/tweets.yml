@@ -2,8 +2,10 @@
 
 one:
   id: 1
+  user_id: 1
   body_text: Hello world!
 
 two:
   id: 2
+  user_id: 1
   body_text: Lorem ipsum dolor sit amet
