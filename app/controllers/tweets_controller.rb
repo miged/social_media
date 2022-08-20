@@ -14,35 +14,37 @@ class TweetsController < ApplicationController
   def create
     @tweet = Tweet.new(params.require(:tweet).permit(:body_text, :user_id))
 
-    if @tweet.save
-      render json: @tweet
-    else
-      head 400
+    if !@tweet.save
+      return head :bad_request
     end
+
+    render json: @tweet
   end
 
   def update
     @tweet = Tweet.find(params[:id])
 
-    if params[:user_id].to_i == @tweet.user_id
-      @tweet.body_text = params[:body_text]
-      @tweet.save
-
-      render json: @tweet
-    else
-      head :forbidden
+    # check if user matches
+    if params[:user_id].to_i != @tweet.user_id
+      return head :forbidden
     end
+
+    @tweet.body_text = params[:body_text]
+    @tweet.save
+
+    render json: @tweet
   end
 
   def destroy
     @tweet = Tweet.find(params[:id])
 
-    if params[:user_id].to_i == @tweet.user_id
-      @tweet.destroy
-      head 200
-    else
-      head :forbidden
+    # check if user matches
+    if params[:user_id].to_i != @tweet.user_id
+      return head :forbidden
     end
+
+    @tweet.destroy
+    head :ok
   end
 
   private

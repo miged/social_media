@@ -10,13 +10,13 @@ class TweetsControllerTest < ActionDispatch::IntegrationTest
   test "should not create tweet if user doesn't exist" do
     post "/tweet",
     params: { tweet: { body_text: "Test", user_id: 999 } }
-    assert_response 400
+    assert_response :bad_request
   end
 
   test "should not create empty tweet" do
     post "/tweet",
     params: { tweet: { body_text: "", user_id: 1 } }
-    assert_response 400
+    assert_response :bad_request
   end
 
   test "should show all tweets" do

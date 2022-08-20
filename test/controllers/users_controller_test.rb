@@ -13,18 +13,24 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should not create a duplicate user" do
     post "/register",
     params: { user: { username: "jane", password_digest: "p@ssw0rd" } }
-    assert_response 400
+    assert_response :bad_request
   end
 
   test "should validate password when creating user" do
     post "/register",
     params: { user: { username: "john" } }
-    assert_response 400
+    assert_response :bad_request
   end
 
   test "should login user" do
     post "/login",
     params: { username: "jane", password: "password123" }
     assert_response :success
+  end
+
+  test "should not login user if password is wrong" do
+    post "/login",
+    params: { username: "jane", password: "password" }
+    assert_response :forbidden
   end
 end
