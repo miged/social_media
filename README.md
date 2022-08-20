@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Social media API, build with Ruby on Rails 7.0.3.1 and SQLite.
 
-Things you may want to cover:
+Controller code is located in `app/controllers`
 
-* Ruby version
+Test code is located in `test/controllers`
 
-* System dependencies
+## Running the server
 
-* Configuration
+- Make sure Ruby 3.0.3 is installed
 
-* Database creation
+- Setup database with `bin/rails db:setup`
 
-* Database initialization
+- Run server with `bin/rails server`
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Run tests with `bin/rails test`
